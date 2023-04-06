@@ -89,12 +89,12 @@ public:
 
     bool isEmpty()
     {
-        return (head == nullptr);
+        return (head == nullptr) ? true : false;
     }
 
     bool isFull()
     {
-        return (length == size);
+        return (length == size) ? true : false;
     }
     int StackTop()
     {
@@ -102,7 +102,7 @@ public:
     }
     int Display()
     {
-        if(head == nullptr)
+        if(this->head == nullptr)
         {
             throw underflow_error("Stack is empty");
         }
@@ -119,3 +119,35 @@ public:
     }
 };
 
+int main()
+{
+    auto starting_of_stack = chrono::high_resolution_clock::now();
+
+    linked_Stack Stack(20);
+
+    for(int i = 0; i < 9; i++)
+    {
+        cout << "Pushing element : "<< Stack.push(rand()%100) << endl;
+    }
+
+    Stack.Display();
+
+    for(int i = 0; i < 5; i++)
+    {
+        cout << "Popping element : " << Stack.pop() << endl;
+    }
+    Stack.Display();
+
+    for (int i = 0; i < 4; i++)
+    {
+        cout << "Pushing element : "<< Stack.push(rand()%100) << endl;
+    }
+    
+
+    Stack.Display();
+
+    auto ending_of_stack = chrono::high_resolution_clock::now();
+    auto duration_of_stack = chrono::duration_cast<chrono::microseconds>(ending_of_stack - starting_of_stack);
+    cout << "Time taken by stack : " << duration_of_stack.count() << " microseconds" << endl;
+
+} 
