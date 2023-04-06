@@ -139,20 +139,23 @@ int main()
     {
         linked_Stack Stack(stack_size);
 
-        for (int i = 0; i < 10; i++)
+        
+
+        for (int i = 0; i < (stack_size/3)*2; i++)
         {
             cout << "Pushing element : " << Stack.push(rand() % 100) << endl;
         }
 
+
         Stack.Display();
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < (stack_size/3); i++)
         {
             cout << "Popping element : " << Stack.pop() << endl;
         }
         Stack.Display();
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < (stack_size/3); i++)
         {
             cout << "Pushing element : " << Stack.push(rand() % 100) << endl;
         }
