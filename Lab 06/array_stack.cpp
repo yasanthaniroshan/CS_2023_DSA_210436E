@@ -23,16 +23,23 @@ public:
 
     int push(int data)
     {
-        top = top + 1;
-        array[top] = data;
-        return data;
+        if (top + 1 == stack_size)
+        {
+            throw overflow_error("Stack is full");
+        }
+        else
+        {
+            top = top + 1;
+            array[top] = data;
+            return data;
+        }
     }
 
     int pop()
     {
         if (top == -1)
         {
-            return -1;
+            throw underflow_error("Stack is empty");
         }
         else
         {
@@ -45,7 +52,7 @@ public:
     {
         if (top == -1)
         {
-            return -1;
+            throw underflow_error("Stack is empty");
         }
         else
         {
@@ -62,9 +69,13 @@ public:
     }
     void Display()
     {
-        for(int i = top ; i > -1; i--)
+        if (top == -1)
         {
-            cout << "Element " << i << " : " << array[i]<< endl;
+            throw underflow_error("Stack is empty");
+        }
+        for (int i = top; i > -1; i--)
+        {
+            cout << "Element " << i << " : " << array[i] << endl;
         }
     }
 };
@@ -74,34 +85,44 @@ int main()
 
     auto starting_of_stack = chrono::high_resolution_clock::now();
 
-    arr_Stack Stack(20);
+    int stack_size;
+    cout << "Enter the size of stack : ";
+    cin >> stack_size;  
 
-    for(int i = 0; i < 10; i++)
+
+    try
     {
-        cout << "Pushing element : "<< Stack.push(rand() %100) << endl;
+
+        arr_Stack Stack(stack_size);
+
+        for (int i = 0; i < 10; i++)
+        {
+            cout << "Pushing element : " << Stack.push(rand() % 100) << endl;
+        }
+
+        Stack.Display();
+
+        for (int i = 0; i < 5; i++)
+        {
+            cout << "Popping element : " << Stack.pop() << endl;
+        }
+
+        Stack.Display();
+
+        for (int i = 0; i < 5; i++)
+        {
+            cout << "Pushing element : " << Stack.push(rand() % 100) << endl;
+        }
+
+        Stack.Display();
     }
-
-    Stack.Display();
-
-    for(int i = 0; i < 5; i++)
+    catch (const std::exception &e)
     {
-        cout << "Popping element : " << Stack.pop() << endl;
+        std::cerr<<'\n'<< "Error : " << e.what() << '\n';
+        exit(1);
     }
-
-    Stack.Display();
-
-    for(int i = 0; i < 5; i++)
-    {
-        cout << "Pushing element : "<< Stack.push(rand() %100) << endl;
-    }
-
-    Stack.Display();
 
     auto ending_of_stack = chrono::high_resolution_clock::now();
     auto duration_of_stack = chrono::duration_cast<chrono::microseconds>(ending_of_stack - starting_of_stack);
-    auto time_taken_iterative = chrono::duration_cast<chrono::duration<double>>(ending_of_stack - starting_of_stack).count();
-
     cout << "Time taken by stack : " << duration_of_stack.count() << " microseconds" << endl;
-    cout << "time taken for iterative is : " << fixed << setprecision(20)<< time_taken_iterative << " microseconds"<< endl;
- 
 }
