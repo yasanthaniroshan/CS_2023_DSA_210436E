@@ -83,46 +83,44 @@ public:
 int main()
 {
 
-    auto starting_of_stack = chrono::high_resolution_clock::now();
-
     int stack_size;
     cout << "Enter the size of stack : ";
-    cin >> stack_size;  
-
+    cin >> stack_size;
 
     try
     {
+        auto starting_of_stack = chrono::high_resolution_clock::now();
 
         arr_Stack Stack(stack_size);
 
-        for (int i = 0; i < (stack_size/3)*2; i++)
+        for (int i = 0; i < 10; i++)
         {
             cout << "Pushing element : " << Stack.push(rand() % 100) << endl;
         }
 
         Stack.Display();
 
-        for (int i = 0; i < (stack_size/3); i++)
+        for (int i = 0; i < 5; i++)
         {
             cout << "Popping element : " << Stack.pop() << endl;
         }
 
         Stack.Display();
 
-        for (int i = 0; i < (stack_size/3); i++)
+        for (int i = 0; i < 5; i++)
         {
             cout << "Pushing element : " << Stack.push(rand() % 100) << endl;
         }
 
         Stack.Display();
+        auto ending_of_stack = chrono::high_resolution_clock::now();
+        auto duration_of_stack = chrono::duration_cast<chrono::microseconds>(ending_of_stack - starting_of_stack);
+        cout << "Time taken by stack : " << duration_of_stack.count() << " microseconds" << endl;
     }
     catch (const std::exception &e)
     {
-        std::cerr<<'\n'<< "Error : " << e.what() << '\n';
+        std::cerr << '\n'
+                  << "Error : " << e.what() << '\n';
         exit(1);
     }
-
-    auto ending_of_stack = chrono::high_resolution_clock::now();
-    auto duration_of_stack = chrono::duration_cast<chrono::microseconds>(ending_of_stack - starting_of_stack);
-    cout << "Time taken by stack : " << duration_of_stack.count() << " microseconds" << endl;
 }
