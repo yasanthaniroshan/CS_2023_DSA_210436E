@@ -12,7 +12,6 @@ private:
     int top;
     int stack_size;
     int array[];
-    
 
 public:
     arr_Stack(int size)
@@ -70,3 +69,39 @@ public:
     }
 };
 
+int main()
+{
+
+    auto starting_of_stack = chrono::high_resolution_clock::now();
+
+    arr_Stack Stack(20);
+
+    for(int i = 0; i < 10; i++)
+    {
+        cout << "Pushing element : "<< Stack.push(rand() %100) << endl;
+    }
+
+    Stack.Display();
+
+    for(int i = 0; i < 5; i++)
+    {
+        cout << "Popping element : " << Stack.pop() << endl;
+    }
+
+    Stack.Display();
+
+    for(int i = 0; i < 5; i++)
+    {
+        cout << "Pushing element : "<< Stack.push(rand() %100) << endl;
+    }
+
+    Stack.Display();
+
+    auto ending_of_stack = chrono::high_resolution_clock::now();
+    auto duration_of_stack = chrono::duration_cast<chrono::microseconds>(ending_of_stack - starting_of_stack);
+    auto time_taken_iterative = chrono::duration_cast<chrono::duration<double>>(ending_of_stack - starting_of_stack).count();
+
+    cout << "Time taken by stack : " << duration_of_stack.count() << " microseconds" << endl;
+    cout << "time taken for iterative is : " << fixed << setprecision(20)<< time_taken_iterative << " microseconds"<< endl;
+ 
+}
