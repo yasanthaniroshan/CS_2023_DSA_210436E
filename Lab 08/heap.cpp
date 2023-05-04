@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
   
 // function to heapify the tree
@@ -63,8 +65,22 @@ void displayArray(int arr[], int n)
 // main program
 int main()
 {
-   int heap_arr[] = {4,17,3,12,9,6};
-   int n = sizeof(heap_arr)/sizeof(heap_arr[0]);
+    srand(time(NULL));
+
+    // declare array size
+    cout << "Enter the size of the array: ";
+    int n;
+    cin >> n;
+
+    // create an array of size elements
+    int heap_arr[n];
+
+    // fill the array with random numbers from 0 to 99
+    for (int i = 0; i < n; i++)
+    {
+        heap_arr[i] = rand() % 100;
+    }
+
    cout<<"Input array"<<endl;
    displayArray(heap_arr,n);
   
