@@ -4,8 +4,33 @@ using namespace std;
 // function to heapify the tree
 void heapify(int arr[], int n, int root)
 {
-   // build heapify
-  
+     // find largest among root and its children
+   int maximum_value = root;
+
+   // left child index
+   int left_node = 2*root + 1;
+
+   // right child index
+   int right_node = 2*root + 2;
+
+   //if left child is larger than root node
+   if (left_node < n && arr[left_node] > arr[maximum_value])
+   {
+      maximum_value = left_node;
+   }
+   
+   //if right child is larger than root node 
+   if (right_node < n && arr[right_node] > arr[maximum_value])
+   {
+      maximum_value = right_node;
+   }
+
+   // swap and continue heapifying if root is not largest
+   if (maximum_value != root)
+   {
+      swap(arr[root], arr[maximum_value]);
+      heapify(arr, n, maximum_value);
+   }
    
 }
   
