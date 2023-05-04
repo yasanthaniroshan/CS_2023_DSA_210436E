@@ -37,10 +37,18 @@ void heapify(int arr[], int n, int root)
 // implementing heap sort
 void heapSort(int arr[], int n)
 {
-   // build heap
-   
-  
-   // extracting elements from heap one by one
+    // build max heap 
+   for (int i = n/2 - 1; i >= 0; i--)
+    {
+        heapify(arr, n, i);
+    }
+   // heap sort
+
+   for (int i = n-1; i >= 0; i--)
+   {
+         swap(arr[0],arr[i]);
+         heapify(arr, i, 0);
+   }
    
 }
   
