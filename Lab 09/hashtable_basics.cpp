@@ -46,12 +46,14 @@ struct HashTable{
 	//add an if condition to complete the code here
         if(empty)
         {
+            //user doesn't exist add user
             password[hash] = user_password;
             cout << "User added" << endl;
         }
         else 
         {
-            cout << "User already esxist" << endl;
+            //user exists 
+            cout << "User already exist" << endl;
         }
         
 
@@ -64,10 +66,12 @@ struct HashTable{
 	//add an if condition to complete the code here
         if(empty)
         {
+            //user doesn't exist
             cout << "User doesn't exsist " << endl;
         }
         else
         {
+            //user exists so print password
             cout << "User password is " << password[hash] << endl;
         }
 	
@@ -77,10 +81,13 @@ struct HashTable{
         bool empty;
         hash = hashfunc(user_name);
         empty = is_slot_empty(hash);
+
         if(empty){
+            //user doesn't exist
             cout<<"No item found\n";
         }
         else{
+            //user exists so delete
             password[hash].clear();
             cout<<"User deleted\n";
         }

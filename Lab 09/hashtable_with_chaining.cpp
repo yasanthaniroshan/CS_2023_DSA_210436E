@@ -63,10 +63,12 @@ struct HashTable{
 	//add your code below
         if(empty)
         {
+            //user doesn't exist
             cout << "User does not exist" << endl;
         }
         else
         {
+            //user exist and search for the username
             password[hash].search(user_name);
         }
 	
